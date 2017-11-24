@@ -1,0 +1,47 @@
+html
+	head
+		title Homepage Bulletinboard
+	body
+		include nav.pug
+
+		h1 All messages Bulletin Board
+
+		ul
+			each item in messagesArray 
+				hr
+				li.messageli <br> <strong>#{item.title} </strong><hr> <br> #{item.body} 
+				br
+
+	script.
+		//- console.log(messagesArray)
+
+	style.
+			@import "http://fonts.googleapis.com/css?family=Ubuntu";
+			h1 {
+			font-family:'Ubuntu',sans-serif;
+			text-align:center;
+			}
+
+			ul{
+			font-family:'Ubuntu',sans-serif;
+			text-align:center;
+			list-style-type: none;
+
+			 }	
+			.messageli{
+			box-sizing: border-box;
+			width: 800px;
+			height:auto;
+			margin:0 auto;
+			font-family:'Ubuntu',sans-serif;
+			text-align:center;
+			border:1px solid #ccc;
+			padding:0 50px 15px;
+			box-shadow:0 0 15px;
+			border-radius:6px;
+			margin-top: 40px;
+			}
+
+			{
+			font-weight: bold;
+			}
