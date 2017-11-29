@@ -6,14 +6,25 @@ html
 
 		h1 All messages Bulletin Board
 
+		form(id="userForm" method="POST", action="/selectUser")
+			H3 Search by user:
+			hr
+			label(id='namelabel') Username:
+			input(id='username' type="text" name='username' placeholder='username')
+			hr
+			input(id='submitelement' type="submit" value="submit")
+
 		ul
+			
+			li(class="messageli") #{userTekst} #{userSelected}
+
 			each item in messagesArray 
-				hr
-				li.messageli <br> <strong>#{item.title} </strong><hr> <br> #{item.body} 
+				
+				li(class="messageli") <br> <strong>#{item.title} </strong><hr> #{item.body} 
 				br
 
 	script.
-		//- console.log(messagesArray)
+		
 
 	style.
 			@import "http://fonts.googleapis.com/css?family=Ubuntu";
@@ -23,12 +34,28 @@ html
 			}
 
 			ul{
+			list-style-type: none;
+			margin-left: -35px;
+			}
+
+			
+			.messageli{
+			text-decoration:none;
+			box-sizing: border-box;
+			width: 800px;
+			height:auto;
+			margin:-30 auto;
 			font-family:'Ubuntu',sans-serif;
 			text-align:center;
-			list-style-type: none;
+			border:1px solid #ccc;
+			padding:0 20px 15px;
+			box-shadow:0 0 15px;
+			border-radius:6px;
+			margin-top: 40px;
+			
+			}
 
-			 }	
-			.messageli{
+			#userForm, #submitelement{
 			box-sizing: border-box;
 			width: 800px;
 			height:auto;
@@ -42,6 +69,35 @@ html
 			margin-top: 40px;
 			}
 
-			{
-			font-weight: bold;
+			#userForm h3{
+			margin-top:10px
+			}
+
+			
+			
+
+			label{
+			float:left;
+			font-size:16px
+			}
+
+			input{
+			width:100%;
+			margin-top:10px;
+			height:35px;
+			margin-bottom:10px;
+			padding:10px;
+			border:3px solid #2BC1F2;
+			}
+
+			#submitelement{
+			width:100%;
+			padding:10px 45px;
+			background-color:#2BC1F2;
+			border:none;
+			color:#fff;
+			font-size:18px;
+			font-weight:700;
+			cursor:pointer;
+			font-family:'Ubuntu',sans-serif
 			}

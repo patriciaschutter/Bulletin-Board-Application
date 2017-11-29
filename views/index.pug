@@ -11,8 +11,12 @@ html
 		h3 
 
 		form(id="messagesForm" method="POST", action="/inputMessages")
-			h3 Leave a message if you like
+			h1 Leave a message if you like
 			hr
+			br
+			label(id='namelabel') Username:
+			input(id='username' type="text" name='username' placeholder='username')
+			hr 
 			br
 			label(id='namelabel') Title:
 			input(id='title' type="text" name='title' placeholder='Title')
