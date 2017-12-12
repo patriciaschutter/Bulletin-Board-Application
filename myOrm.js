@@ -74,6 +74,17 @@ function insertMessages(table, table2, title, message, username, cb){
 	})
 }
 
+// function to select all messages from specific user
+function selectFrom(table1, table2, userSearch, cb){
+	client.query(`SELECT * FROM ${table1} WHERE user_id = (SELECT (id) FROM ${table2} WHERE username = '${userSearch}');`)
+	.then((result) => {
+			cb(result.rows)
+	})
+	.catch((error) => {
+		console.log("error at function insertMessages: ", error);
+	})
+}
+
 
 
 // exporting the function to (in this case) app.js
@@ -84,96 +95,7 @@ module.exports = {
 	findById: findById,
 	insertUser: insertUser,
 	insertMessages: insertMessages,
+	selectFrom: selectFrom
 }
-
-
-
-
-
-// myOrm.findAll("users", function(res){
-// 	    console.log("Result findAll: ", res)
-// })	
-
-
-
-// myOrm.findById("messages", 27, function(res){
-//     console.log("Result findById: ", res)
-// })
-
-
-
-
-
-// app.post('/inputMessages', function(req, res){
-// 	var inputUser = req.body.username
-// 	var inputTitle = req.body.title
-// 	var inputMessage = req.body.message
-
-// 	myOrm.findWhere('users', inputUser, function(result){
-// 		console.log("length: ", result.length)
-// 		if(result.length !== 0){ // if user exists
-// 			myOrm.insertMessages('messages', 'users', inputTitle, inputMessage, inputUser, function(result){
-// 				console.log("inserted into messages1")
-// 			})
-// 		}
-// 		else if (result.length < 0){ // if it's not existing, username should be added/inserted in users table
-// 			myOrm.insertUser('users', inputUser, function(result){
-// 			})
-// 			myOrm.insertMessages('messages', 'users', inputTitle, inputMessage, inputUser, function(result){
-// 				console.log("inserted into messages1")
-// 			})
-// 		}
-// 	})
-	
-// 	res.render('thanks')// Thank you message for 2 sec then back to form.
-// })
-
-
-// app.post('/inputMessages', function(req, res){
-// 	var inputUser = req.body.username
-// 	var inputTitle = req.body.title
-// 	var inputMessage = req.body.message
-
-// 	myOrm.findWhere('users', inputUser, function(result){
-// 		console.log(result.length)
-// 		if (result.length < 0){ // if it's not existing, username should be added/inserted in users table
-// 			myOrm.insertUser('users', inputUser, function(result){
-				
-// 			})
-// 		}
-// 	})
-// 	.then(()=>{
-// 	myOrm.insertMessages('messages', 'users', inputTitle, inputMessage, inputUser, function(result){
-// 				console.log("inserted into messages1")
-// 			})
-// 	})
-// 	res.render('thanks')// Thank you message for 2 sec then back to form.
-// })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
