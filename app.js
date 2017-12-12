@@ -71,7 +71,7 @@ app.post('/selectUser', function(req, res){
 	console.log("USERSEARCX", userSearch)
 
 	myOrm.selectFrom('messages', 'users', userSearch, function(result){
-		res.render('allmessages', {
+		res.render('allMessages', {
 			messagesArray: result,
 			userSelected: userSearch,
 			userTekst: tekst,
